@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rahul Raj Singh — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" />
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <style>
+    :root {
+      --bg: #06080f;
+      --bg2: #0d1120;
+      --bg3: #131929;
+      --card: #111827;
+      --border: rgba(255,255,255,0.07);
+      --text: #e2e8f8;
+      --muted: #7a8aaa;
+      --accent: #4f6ef7;
+      --accent2: #22d3ee;
+      --accent-glow: rgba(79,110,247,0.18);
+      --heading: #f0f4ff;
+      --radius: 14px;
+      --shadow: 0 8px 32px rgba(0,0,0,0.45);
+      --trans: 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    [data-theme="light"] {
+      --bg: #f4f6fb;
+      --bg2: #eaecf4;
+      --bg3: #ffffff;
+      --card: #ffffff;
+      --border: rgba(0,0,0,0.08);
+      --text: #2d3748;
+      --muted: #6b7a99;
+      --accent: #3b5bdb;
+      --accent2: #0891b2;
+      --accent-glow: rgba(59,91,219,0.12);
+      --heading: #111827;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+      transition: background var(--trans), color var(--trans);
+    }
+    ::selection { background: var(--accent); color: #fff; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
+    .section__title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: var(--heading);
+      margin-bottom: 56px;
+      position: relative;
+      display: inline-block;
+    }
+    .section__title span { color: var(--accent); }
+    .section__title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 48px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 8px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.03em;
+      border: 2px solid var(--accent);
+      cursor: pointer;
+      transition: background var(--trans), transform var(--trans), box-shadow var(--trans);
+    }
+    .button:hover {
+      background: transparent;
+      color: var(--accent);
+      box-shadow: 0 0 24px var(--accent-glow);
+      transform: translateY(-2px);
+    }
+    .button--outline {
+      background: transparent;
+      color: var(--accent);
+    }
+    .button--outline:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+    .tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--accent-glow);
+      color: var(--accent);
+      border: 1px solid rgba(79,110,247,0.3);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      font-family: 'Syne', sans-serif;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 0;
+      transition: background var(--trans), box-shadow var(--trans);
+    }
+    .header.scrolled {
+      background: var(--bg2);
+      box-shadow: 0 1px 0 var(--border);
+      backdrop-filter: blur(12px);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+    .nav__logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: var(--heading);
+      letter-spacing: -0.02em;
+    }
+    .nav__logo span { color: var(--accent); }
+    .nav__list {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+    .nav__link {
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color var(--trans);
+      position: relative;
+    }
+    .nav__link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--accent);
+      transition: width var(--trans);
+    }
+    .nav__link:hover, .nav__link.active { color: var(--heading); }
+    .nav__link:hover::after, .nav__link.active::after { width: 100%; }
+    .nav__actions { display: flex; align-items: center; gap: 16px; }
+    .theme-toggle {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      color: var(--text);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      transition: background var(--trans), border var(--trans), transform var(--trans);
+    }
+    .theme-toggle:hover { background: var(--accent); color: #fff; transform: scale(1.05); }
+    .nav__toggle {
+      display: none;
+      width: 40px; height: 40px;
+      align-items: center; justify-content: center;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1.3rem;
+      color: var(--text);
+      transition: background var(--trans);
+    }
+    .nav__toggle:hover { background: var(--accent); color: #fff; }
+    .nav__menu { display: flex; align-items: center; gap: 36px; }
+    .nav__close { display: none; }
+
+    .home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .home::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .home::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(34,211,238,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .home__container {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+      width: 100%;
+    }
+    .home__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(79,110,247,0.25);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-family: 'Syne', sans-serif;
+      color: var(--accent);
+      margin-bottom: 20px;
+      animation: fadeInUp 0.6s ease both;
+    }
+    .home__badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:0.5; transform:scale(1.3); }
+    }
+    .home__subtitle {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      animation: fadeInUp 0.6s 0.1s ease both;
+    }
+    .home__title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 800;
+      color: var(--heading);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+      animation: fadeInUp 0.6s 0.2s ease both;
+    }
+    .home__title .accent { color: var(--accent); }
+    .home__typed-wrap {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--muted);
+      margin-bottom: 24px;
+      height: 30px;
+      animation: fadeInUp 0.6s 0.3s ease both;
+    }
+    .typed-cursor { color: var(--accent); animation: blink 0.8s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .home__actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.6s 0.4s ease both;
+      margin-bottom: 48px;
+    }
+    .home__social {
+      display: flex;
+      gap: 12px;
+      animation: fadeInUp 0.6s 0.5s ease both;
+    }
+    .home__social-link {
+      width: 42px; height: 42px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 1.1rem;
+      background: var(--bg3);
+      transition: all var(--trans);
+    }
+    .home__social-link:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px var(--accent-glow);
+    }
+    .home__image-wrap {
+      position: relative;
+      animation: fadeInRight 0.8s 0.3s ease both;
+    }
+    .home__avatar {
+      width: 260px; height: 260px;
+      border-radius: 24px;
+      object-fit: cover;
+      border: 2px solid var(--border);
+      background: var(--card);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+    .home__avatar:hover { transform: scale(1.02); }
+    .home__stats {
+      position: absolute;
+      bottom: -20px; left: -20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 18px;
+      display: flex;
+      gap: 20px;
+      box-shadow: var(--shadow);
+    }
+    .home__stat-item { text-align: center; }
+    .home__stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--heading);
+    }
+    .home__stat-label { font-size: 0.72rem; color: var(--muted); }
+
+    @keyframes fadeInUp {
+      from { opacity:0; transform:translateY(28px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+    @keyframes fadeInRight {
+      from { opacity:0; transform:translateX(28px); }
+      to { opacity:1; transform:translateX(0); }
+    }
+
+    /* ----- ABOUT (from first code, kept identical) ----- */
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .about__text {
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.85;
+      margin-bottom: 24px;
+    }
+    .about__highlight {
+      background: var(--bg3);
+      border-left: 3px solid var(--accent);
+      padding: 16px 20px;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 28px;
+      font-style: italic;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .skills__section { margin-bottom: 28px; }
+    .skills__label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .skills__tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-tag {
+      padding: 5px 12px;
+      border-radius: 6px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      font-size: 0.78rem;
+      font-family: 'Nunito Sans', sans-serif;
+      color: var(--text);
+      transition: all var(--trans);
+    }
+    .skill-tag:hover {
+      background: var(--accent-glow);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ----- EXPERIENCE (from second code) ----- */
+    .experience { background: var(--bg2); }
+    .timeline {
+      position: relative;
+      max-width: 760px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+    .timeline__item {
+      position: relative;
+      padding: 0 0 48px 60px;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .timeline__item.visible { opacity: 1; transform: translateX(0); }
+    .timeline__dot {
+      position: absolute;
+      left: 12px; top: 6px;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--bg2);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+    .timeline__dot.current {
+      background: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34,197,94,0.2), 0 0 12px rgba(34,197,94,0.4);
+    }
+    .timeline__year {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .timeline__card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      transition: border-color var(--trans), box-shadow var(--trans);
+    }
+    .timeline__card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 24px var(--accent-glow);
+    }
+    .timeline__role {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--heading);
+      margin-bottom: 4px;
+    }
+    .timeline__company {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    /* Hover expand for timeline desc (second code) */
+    .timeline__card .timeline__desc {
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.3s ease, max-height 0.3s ease;
+      margin: 0;
+      padding: 0;
+    }
+    .timeline__card:hover .timeline__desc {
+      opacity: 1;
+      max-height: 200px;
+      margin-top: 0.5rem;
+    }
+    .timeline__desc {
+      font-size: 0.93rem;
+      color: var(--text);
+      line-height: 1.75;
+    }
+    .timeline__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.5rem; }
+
+    /* ----- PROJECTS (second code) ----- */
+    .projects__filters {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .filter-btn {
+      padding: 8px 20px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      color: var(--muted);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all var(--trans);
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      box-shadow: 0 4px 16px var(--accent-glow);
+    }
+    .projects__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform var(--trans), box-shadow var(--trans), border-color var(--trans);
+      animation: fadeInUp 0.5s ease both;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+      border-color: var(--accent);
+    }
+    .project-card.hidden { display: none; }
+    .project-card__thumb {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background: var(--bg2);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted);
+      font-size: 3rem;
+    }
+    .project-card__thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .project-card__body { padding: 20px 22px; }
+    .project-card__meta {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 8px;
+    }
+    .project-card__title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--heading);
+      margin-bottom: 8px;
+    }
+    .project-card__desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.65;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+    .project-card__footer {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .project-card__tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .project-card__arrow {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: var(--accent-glow);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      transition: background var(--trans), transform var(--trans);
+    }
+    .project-card:hover .project-card__arrow {
+      background: var(--accent);
+      color: #fff;
+      transform: rotate(-45deg);
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      backdrop-filter: blur(6px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      max-width: 820px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      transform: scale(0.95) translateY(20px);
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .modal-overlay.open .modal { transform: scale(1) translateY(0); }
+    .modal__close {
+      position: sticky;
+      top: 16px;
+      float: right;
+      margin: 16px 16px 0 0;
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: var(--text);
+      transition: background var(--trans);
+      z-index: 10;
+    }
+    .modal__close:hover { background: #ef4444; color: #fff; }
+    .modal__media {
+      width: 100%;
+      height: 300px;
+      background: var(--bg2);
+      overflow: hidden;
+      border-radius: 20px 20px 0 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted);
+      font-size: 4rem;
+      position: relative;
+    }
+    .modal__media img { width:100%; height:100%; object-fit:cover; }
+    .modal__media iframe { width:100%; height:100%; border:none; }
+    .modal__media-nav {
+      position: absolute;
+      bottom: 12px;
+      display: flex; gap: 6px;
+    }
+    .modal__media-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: background var(--trans);
+    }
+    .modal__media-dot.active { background: #fff; }
+    .modal__body { padding: 28px 32px 32px; }
+    .modal__header { margin-bottom: 20px; }
+    .modal__title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--heading);
+      margin-bottom: 8px;
+    }
+    .modal__tags { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+    .modal__desc {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.85;
+      margin-bottom: 24px;
+    }
+    .modal__links { display:flex; gap:12px; flex-wrap:wrap; }
+
+    /* ----- EDUCATION (from first code) ----- */
+    .education { background: var(--bg2); }
+    .edu__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .edu__card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      transition: border-color var(--trans), box-shadow var(--trans);
+    }
+    .edu__card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 24px var(--accent-glow);
+    }
+    .edu__icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: var(--accent-glow);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+    }
+    .edu__degree {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--heading);
+      margin-bottom: 4px;
+    }
+    .edu__school {
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .edu__meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .edu__score {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--heading);
+    }
+    .edu__score-label { font-size: 0.75rem; color: var(--muted); }
+
+    /* ----- CONTACT (second code, enhanced with phone) ----- */
+    .contact { background: var(--bg2); }
+    .contact__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .contact__subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 36px;
+    }
+    .contact__item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .contact__item:last-child { border-bottom: none; }
+    .contact__icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: var(--accent-glow);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+    .contact__label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-family: 'Syne', sans-serif;
+    }
+    .contact__value {
+      font-size: 0.95rem;
+      color: var(--text);
+      font-weight: 600;
+    }
+    .contact__value a { transition: color var(--trans); }
+    .contact__value a:hover { color: var(--accent); }
+    .contact__form { display: flex; flex-direction: column; gap: 16px; }
+    .form__group { display: flex; flex-direction: column; gap: 6px; }
+    .form__label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .form__input, .form__textarea {
+      padding: 12px 16px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 0.93rem;
+      transition: border-color var(--trans), box-shadow var(--trans);
+      outline: none;
+      resize: none;
+    }
+    .form__input:focus, .form__textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+    .form__textarea { min-height: 130px; }
+    .form-status {
+      margin-top: 12px;
+      font-size: 0.85rem;
+      padding: 8px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .form-status.success {
+      background: rgba(34,197,94,0.15);
+      color: #22c55e;
+      border: 1px solid #22c55e;
+    }
+    .form-status.error {
+      background: rgba(239,68,68,0.15);
+      color: #ef4444;
+      border: 1px solid #ef4444;
+    }
+
+    .footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .footer__text { font-size: 0.85rem; color: var(--muted); }
+    .footer__text span { color: var(--accent); }
+
+    .scroll-top {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: var(--accent);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 20px var(--accent-glow);
+      transform: translateY(80px);
+      transition: transform var(--trans), background var(--trans);
+      z-index: 500;
+      border: none;
+    }
+    .scroll-top.visible { transform: translateY(0); }
+    .scroll-top:hover { background: var(--accent2); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    @media (max-width: 768px) {
+      .nav__menu {
+        position: fixed;
+        top: 0; right: -100%;
+        width: 75%;
+        height: 100vh;
+        background: var(--bg2);
+        flex-direction: column;
+        justify-content: center;
+        gap: 36px;
+        padding: 40px;
+        border-left: 1px solid var(--border);
+        transition: right 0.4s cubic-bezier(0.4,0,0.2,1);
+        z-index: 999;
+      }
+      .nav__menu.open { right: 0; }
+      .nav__list { flex-direction: column; gap: 28px; }
+      .nav__link { font-size: 1.2rem; }
+      .nav__close {
+        display: flex;
+        position: absolute;
+        top: 20px; right: 20px;
+        width: 36px; height: 36px;
+        align-items: center; justify-content: center;
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1.2rem;
+        color: var(--text);
+      }
+      .nav__toggle { display: flex; }
+      .home__container { grid-template-columns: 1fr; text-align: center; }
+      .home__image-wrap { display: none; }
+      .home__actions, .home__social { justify-content: center; }
+      .about__grid { grid-template-columns: 1fr; gap: 40px; }
+      .contact__grid { grid-template-columns: 1fr; gap: 40px; }
+      .projects__grid { grid-template-columns: 1fr; }
+      .edu__grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .section { padding: 72px 0; }
+      .modal__body { padding: 20px 20px 24px; }
+      .modal__media { height: 220px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="header" id="header">
+  <nav class="nav container">
+    <a href="#home" class="nav__logo">rrs<span>.</span></a>
+    <div class="nav__menu" id="nav-menu">
+      <ul class="nav__list">
+        <li><a href="#home" class="nav__link active" data-section="home">Home</a></li>
+        <li><a href="#about" class="nav__link" data-section="about">About</a></li>
+        <li><a href="#experience" class="nav__link" data-section="experience">Experience</a></li>
+        <li><a href="#projects" class="nav__link" data-section="projects">Projects</a></li>
+        <li><a href="#education" class="nav__link" data-section="education">Education</a></li>
+        <li><a href="#contact" class="nav__link" data-section="contact">Contact</a></li>
+      </ul>
+      <span class="nav__close" id="nav-close"><i class="ri-close-line"></i></span>
+    </div>
+    <div class="nav__actions">
+      <button class="theme-toggle" id="theme-toggle" title="Toggle theme">
+        <i class="ri-moon-line" id="theme-icon"></i>
+      </button>
+      <div class="nav__toggle" id="nav-toggle">
+        <i class="ri-menu-line"></i>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- HOME (from second code, badge and typewriter) -->
+<section class="home section" id="home">
+  <div class="home__container container">
+    <div class="home__data">
+      <div class="home__badge">Available for opportunities</div>
+      <p class="home__subtitle">Hello, I'm</p>
+      <h1 class="home__title">RAHUL RAJ <span class="accent">SINGH</span></h1>
+      <div class="home__typed-wrap">
+        <span id="typed-text"></span><span class="typed-cursor">|</span>
+      </div>
+      <div class="home__actions">
+        <a href="#projects" class="button">View Projects<i class="ri-arrow-right-line"></i></a>
+        <a href="#contact" class="button button--outline">Contact Me</a>
+      </div>
+      <div class="home__social">
+        <a href="https://github.com/rahulrajsinghwork15072005-a11y" target="_blank" class="home__social-link"><i class="ri-github-line"></i></a>
+        <a href="https://www.linkedin.com/in/rahul-raj-singh-57442a3b3/" target="_blank" class="home__social-link"><i class="ri-linkedin-box-line"></i></a>
+        <a href="mailto:rahulrajsingh.work.15072005@gmail.com" class="home__social-link"><i class="ri-mail-line"></i></a>
+      </div>
+    </div>
+    <div class="home__image-wrap">
+      <img src="image.png" alt="Rahul Raj Singh" class="home__avatar" onerror="this.onerror=null; this.src='https://via.placeholder.com/260x260?text=Rahul';" />
+      <div class="home__stats">
+        <div class="home__stat-item">
+          <div class="home__stat-num">3+</div>
+          <div class="home__stat-label">Years Coding</div>
+        </div>
+        <div class="home__stat-item">
+          <div class="home__stat-num">5+</div>
+          <div class="home__stat-label">Projects</div>
+        </div>
+        <div class="home__stat-item">
+          <div class="home__stat-num">5+</div>
+          <div class="home__stat-label">Tech Stacks</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT (kept exactly from the first code) -->
+<section class="about section" id="about">
+  <div class="container">
+    <h2 class="section__title reveal">About <span>Me</span></h2>
+    <div class="about__grid">
+      <div>
+        <p class="about__text reveal">
+          I'm a <strong>BTech Computer Science student at VIT Chennai</strong> (graduating 2027) with practical experience in data analysis, Python automation, and embedded systems. I've completed two data analytics internships and led a robotics team — bridging software and hardware with data-driven thinking.
+        </p>
+        <p class="about__text reveal">
+          My interests span data engineering, machine learning, and building interactive tools. I enjoy turning messy real-world data into clear insights and building things that work elegantly end-to-end.
+        </p>
+        <div class="about__highlight reveal reveal-delay-1">
+          "Seeking a Data Analyst or Data Science internship / entry-level role where I can apply Python, SQL, and BI tools to solve real-world business problems at scale."
+        </div>
+        <a href="#contact" class="button reveal reveal-delay-2">Let's Connect <i class="ri-arrow-right-line"></i></a>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <div class="skills__section">
+          <div class="skills__label">Languages</div>
+          <div class="skills__tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">C/C++</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">HTML/CSS</span>
+          </div>
+        </div>
+        <div class="skills__section">
+          <div class="skills__label">Data & Analytics</div>
+          <div class="skills__tags">
+            <span class="skill-tag">pandas</span>
+            <span class="skill-tag">NumPy</span>
+            <span class="skill-tag">scikit-learn</span>
+            <span class="skill-tag">Matplotlib</span>
+            <span class="skill-tag">Seaborn</span>
+            <span class="skill-tag">Excel (VLOOKUP, PivotTables)</span>
+            <span class="skill-tag">Google Sheets</span>
+          </div>
+        </div>
+        <div class="skills__section">
+          <div class="skills__label">BI & Visualization</div>
+          <div class="skills__tags">
+            <span class="skill-tag">Looker Studio</span>
+            <span class="skill-tag">Power BI</span>
+            <span class="skill-tag">Tableau</span>
+            <span class="skill-tag">Google Analytics 4</span>
+          </div>
+        </div>
+        <div class="skills__section">
+          <div class="skills__label">Databases & Tools</div>
+          <div class="skills__tags">
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">Git / GitHub</span>
+            <span class="skill-tag">Jupyter</span>
+            <span class="skill-tag">VS Code</span>
+            <span class="skill-tag">AWS</span>
+          </div>
+        </div>
+        <div class="skills__section">
+          <div class="skills__label">Hardware & Embedded</div>
+          <div class="skills__tags">
+            <span class="skill-tag">Raspberry Pi</span>
+            <span class="skill-tag">OpenCV</span>
+            <span class="skill-tag">GPIO</span>
+            <span class="skill-tag">C++ (Embedded)</span>
+            <span class="skill-tag">IR Sensors</span>
+            <span class="skill-tag">PID Control</span>
+          </div>
+        </div>
+        <div class="skills__section">
+          <div class="skills__label">Core CS</div>
+          <div class="skills__tags">
+            <span class="skill-tag">Data Structures & Algorithms</span>
+            <span class="skill-tag">DBMS</span>
+            <span class="skill-tag">Machine Learning</span>
+            <span class="skill-tag">Statistics</span>
+            <span class="skill-tag">Cloud Computing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE (from second code, with hover expand) -->
+<section class="experience section" id="experience">
+  <div class="container">
+    <h2 class="section__title reveal">Work <span>Experience</span></h2>
+    <div class="timeline" id="timeline">
+
+      <!-- Havoltz -->
+      <div class="timeline__item">
+        <div class="timeline__dot current"></div>
+        <div class="timeline__year"><i class="ri-time-line"></i> Sep 2025 – May 2026</div>
+        <div class="timeline__card">
+          <div class="timeline__role">Tech Lead (AI Robotics)</div>
+          <div class="timeline__company"><i class="ri-building-line"></i> Havoltz · On-site</div>
+          <div class="timeline__desc">
+            <ul>
+              <li>Led a team of 6 engineers to design AI-powered line-following robots; integrated sensor fusion and lightweight ML models (C++/Python) for adaptive speed control, improving track completion by 34%.</li>
+              <li>Architected embedded data pipelines processing real-time IR sensor arrays – applied moving average filters and outlier rejection, reducing false path detections by 28%.</li>
+              <li>Developed a simulation environment (Python + OpenCV) to train control heuristics offline, cutting on-track tuning time by 40%.</li>
+              <li>Collaborated on cyber-physical systems, bridging hardware interrupts with decision logic; authored technical documentation for sensor calibration and real-time logging.</li>
+              <li>Introduced data-driven performance dashboards (Excel + Python plots) to track robot lap times, sensor drift, and motor response.</li>
+            </ul>
+          </div>
+          <div class="timeline__tags">
+            <span class="tag">C++/Python</span>
+            <span class="tag">Sensor Fusion</span>
+            <span class="tag">Edge ML</span>
+            <span class="tag">OpenCV</span>
+            <span class="tag">Data Logging</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Senior Data Analyst Intern -->
+      <div class="timeline__item">
+        <div class="timeline__dot"></div>
+        <div class="timeline__year"><i class="ri-time-line"></i> May 2025 – Aug 2025</div>
+        <div class="timeline__card">
+          <div class="timeline__role">Senior Data Analyst Intern</div>
+          <div class="timeline__company"><i class="ri-building-line"></i> E-Search Advisors Digital Services · Remote / Chennai, TN</div>
+          <div class="timeline__desc">
+            <ul>
+              <li>Conducted deep-dive research on content creation & SEO trends, identifying high-impact keywords using Python (pandas, keyword extraction) that boosted organic traffic by 28% over 3 months.</li>
+              <li>Developed automated dashboards (Looker Studio + Power Query) with real-time campaign performance metrics, reducing weekly report generation from 4h → 1h.</li>
+              <li>Performed multivariate analysis on social media engagement (likes, shares, comments) using regression models (scikit-learn), leading to a 20% increase in average engagement rate.</li>
+              <li>Optimised website behaviour funnels by analysing user clickstream data (Google Analytics 4 + Python); contributed to 12% reduction in bounce rate and 10% lift in conversion rate.</li>
+              <li>Mentored 3 junior interns on data cleaning, ETL, and reporting standards, improving team efficiency by 18% during overlap period.</li>
+              <li>Built a lightweight A/B testing framework for ad copy variants using statistical hypothesis testing (t-tests in Python), driving data‑backed creative decisions.</li>
+            </ul>
+          </div>
+          <div class="timeline__tags">
+            <span class="tag">Python (pandas)</span>
+            <span class="tag">Looker Studio</span>
+            <span class="tag">A/B Testing</span>
+            <span class="tag">SEO Analytics</span>
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">GA4</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Management & Data Strategy Lead -->
+      <div class="timeline__item">
+        <div class="timeline__dot"></div>
+        <div class="timeline__year"><i class="ri-time-line"></i> Sep 2024 – May 2024</div>
+        <div class="timeline__card">
+          <div class="timeline__role">Management & Data Strategy Lead</div>
+          <div class="timeline__company"><i class="ri-building-line"></i> DAO Club · Hybrid</div>
+          <div class="timeline__desc">
+            <ul>
+              <li>Managed core operations for a 150+ member Web3 student club; used analytics (engagement metrics, event attendance) to drive strategy – increased active participation by 45%.</li>
+              <li>Designed automated dashboards (Google Sheets + Looker Studio) to track budget allocation, fundraising KPIs, and resource utilization; enabled real‑time financial decisions.</li>
+              <li>Organised 8+ workshops and speaker sessions with 50+ avg attendees; applied post-event surveys and sentiment analysis (Excel, basic NLP) to optimise future topics.</li>
+              <li>Led data‑driven membership segmentation using behaviour clustering (RFM style), improving targeted outreach and increasing workshop retention by 22%.</li>
+              <li>Collaborated with tech leads to analyse on‑chain event data (basic Python scripts) and presented insights on DeFi trends to the executive board.</li>
+            </ul>
+          </div>
+          <div class="timeline__tags">
+            <span class="tag">Analytics Dashboards</span>
+            <span class="tag">Looker Studio</span>
+            <span class="tag">Segmentation</span>
+            <span class="tag">Data Strategy</span>
+            <span class="tag">Web3 Metrics</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Junior Data Analyst Intern -->
+      <div class="timeline__item">
+        <div class="timeline__dot"></div>
+        <div class="timeline__year"><i class="ri-time-line"></i> May 2024 – Aug 2024</div>
+        <div class="timeline__card">
+          <div class="timeline__role">Junior Data Analyst Intern</div>
+          <div class="timeline__company"><i class="ri-building-line"></i> E-Search Advisors Digital Services · Chennai, TN (On-site)</div>
+          <div class="timeline__desc">
+            <ul>
+              <li>Refined and standardised raw marketing data from 5+ sources (social media, website analytics, CRM) using Excel & Google Sheets, improving data consistency by 40%.</li>
+              <li>Performed daily data ordering, filtering, and validation tasks, reducing manual processing time by 25% through semi-automated sorting scripts (Excel macros, basic Python automation).</li>
+              <li>Assisted in generating performance tables and summary reports for marketing team, ensuring 100% on‑time delivery of weekly data snapshots.</li>
+              <li>Collaborated with senior analysts to identify and correct data entry errors using outlier detection (IQR method), leading to a 15% drop in reporting discrepancies.</li>
+              <li>Introduced a simple anomaly detection template (Excel conditional formatting + z-score) for campaign cost data, flagging irregularities 2x faster.</li>
+            </ul>
+          </div>
+          <div class="timeline__tags">
+            <span class="tag">Excel / GSheets</span>
+            <span class="tag">ETL</span>
+            <span class="tag">Data Validation</span>
+            <span class="tag">Outlier Detection</span>
+            <span class="tag">Automation</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS (from second code) -->
+<section class="projects section" id="projects">
+  <div class="container">
+    <h2 class="section__title reveal">Featured <span>Projects</span></h2>
+    <div class="projects__filters reveal" id="project-filters"></div>
+    <div class="projects__grid" id="projects-grid"></div>
+  </div>
+</section>
+
+<!-- EDUCATION (from first code) -->
+<section class="education section" id="education">
+  <div class="container">
+    <h2 class="section__title reveal">My <span>Education</span></h2>
+    <div class="edu__grid">
+
+      <div class="edu__card reveal">
+        <div class="edu__icon"><i class="ri-graduation-cap-line"></i></div>
+        <div class="edu__degree">BTech in Computer Science &amp; Engineering</div>
+        <div class="edu__school">Vellore Institute of Technology (VIT)</div>
+        <div class="edu__meta">Chennai, TN · Expected May 2027</div>
+        <div style="font-size:0.82rem;color:var(--muted);line-height:1.6">
+          Relevant: Data Structures &amp; Algorithms, DBMS, Machine Learning, Statistics, Cloud Computing
+        </div>
+      </div>
+
+      <div class="edu__card reveal reveal-delay-1">
+        <div class="edu__icon"><i class="ri-book-2-line"></i></div>
+        <div class="edu__degree">All India Senior School Certificate (Class XII)</div>
+        <div class="edu__school">GT Aloha Vidya Mandir</div>
+        <div class="edu__meta">Neelankarai, Chennai · June 2023</div>
+        <div class="edu__score">90.2%</div>
+        <div class="edu__score-label">AISSCE Score</div>
+      </div>
+
+      <div class="edu__card reveal reveal-delay-2">
+        <div class="edu__icon"><i class="ri-award-line"></i></div>
+        <div class="edu__degree">All India Secondary School Certificate (Class X)</div>
+        <div class="edu__school">St. John's Universal School</div>
+        <div class="edu__meta">Palavakkam, Chennai · May 2021</div>
+        <div class="edu__score">94.2%</div>
+        <div class="edu__score-label">AISSE Score</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT (from second code, added phone) -->
+<section class="contact section" id="contact">
+  <div class="container">
+    <h2 class="section__title reveal">Get In <span>Touch</span></h2>
+    <div class="contact__grid">
+      <div>
+        <p class="contact__subtitle reveal">
+          I'm actively looking for data / AI opportunities. Whether you have a question, a project idea, or just want to say hi — my inbox is open.
+        </p>
+        <div class="contact__item reveal reveal-delay-1">
+          <div class="contact__icon"><i class="ri-mail-line"></i></div>
+          <div>
+            <div class="contact__label">Email</div>
+            <div class="contact__value"><a href="mailto:rahulrajsingh.work.15072005@gmail.com">rahulrajsingh.work.15072005@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact__item reveal reveal-delay-1">
+          <div class="contact__icon"><i class="ri-phone-line"></i></div>
+          <div>
+            <div class="contact__label">Phone</div>
+            <div class="contact__value"><a href="tel:+918925695503">+91 89256 95503</a></div>
+          </div>
+        </div>
+        <div class="contact__item reveal reveal-delay-2">
+          <div class="contact__icon"><i class="ri-linkedin-box-line"></i></div>
+          <div>
+            <div class="contact__label">LinkedIn</div>
+            <div class="contact__value"><a href="https://linkedin.com/in/rahul-raj-singh-57442a3b3/" target="_blank">linkedin.com/in/rahul-raj-singh</a></div>
+          </div>
+        </div>
+        <div class="contact__item reveal reveal-delay-3">
+          <div class="contact__icon"><i class="ri-github-line"></i></div>
+          <div>
+            <div class="contact__label">GitHub</div>
+            <div class="contact__value"><a href="https://github.com/rahulrajsinghwork15072005-a11y" target="_blank">github.com/rahulrajsingh</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <form id="contact-form" class="contact__form">
+          <div class="form__group">
+            <label class="form__label">Name</label>
+            <input type="text" name="user_name" class="form__input" placeholder="Your name" required />
+          </div>
+          <div class="form__group">
+            <label class="form__label">Email</label>
+            <input type="email" name="user_email" class="form__input" placeholder="your@email.com" required />
+          </div>
+          <div class="form__group">
+            <label class="form__label">Message</label>
+            <textarea name="message" class="form__textarea" placeholder="Tell me about your project or opportunity..." required></textarea>
+          </div>
+          <button type="submit" class="button" id="send-btn">Send Message <i class="ri-send-plane-line"></i></button>
+          <div id="form-status" class="form-status" style="display: none;"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p class="footer__text">Built by <span>Rahul Raj Singh</span> · VIT Chennai · 2025</p>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scroll-top"><i class="ri-arrow-up-line"></i></button>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal">
+    <button class="modal__close" id="modal-close"><i class="ri-close-line"></i></button>
+    <div class="modal__media" id="modal-media"></div>
+    <div class="modal__body">
+      <div class="modal__header">
+        <div class="modal__tags" id="modal-tags"></div>
+        <h2 class="modal__title" id="modal-title"></h2>
+      </div>
+      <p class="modal__desc" id="modal-desc"></p>
+      <div class="modal__links" id="modal-links"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const EMAILJS_PUBLIC_KEY = "ydahprhZxFTdECZKK";
+  const EMAILJS_SERVICE_ID  = "service_1alsjio";
+  const EMAILJS_TEMPLATE_ID = "template_fvaw9lv";
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+
+  // Contact form
+  const form = document.getElementById('contact-form');
+  const statusDiv = document.getElementById('form-status');
+  const sendBtn = document.getElementById('send-btn');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    sendBtn.innerHTML = 'Sending... <i class="ri-loader-4-line ri-spin-line"></i>';
+    sendBtn.disabled = true;
+    statusDiv.style.display = 'none';
+    emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, this)
+      .then(() => {
+        statusDiv.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
+        statusDiv.className = 'form-status success';
+        statusDiv.style.display = 'block';
+        form.reset();
+      })
+      .catch((error) => {
+        console.error('EmailJS error:', error);
+        statusDiv.textContent = '❌ Failed to send. Please email me directly at rahulrajsingh.work.15072005@gmail.com';
+        statusDiv.className = 'form-status error';
+        statusDiv.style.display = 'block';
+      })
+      .finally(() => {
+        sendBtn.innerHTML = 'Send Message <i class="ri-send-plane-line"></i>';
+        sendBtn.disabled = false;
+        setTimeout(() => {
+          if (statusDiv.style.display === 'block') {
+            statusDiv.style.opacity = '0';
+            setTimeout(() => statusDiv.style.display = 'none', 300);
+          }
+        }, 5000);
+      });
+  });
+
+  // Typewriter (ML-focused from second code)
+  const roles = ['ML Engineer', 'AI Engineer', 'Data Scientist', 'Deep Learning Dev'];
+  let roleIdx = 0, charIdx = 0, deleting = false;
+  const typedEl = document.getElementById('typed-text');
+  function typeLoop() {
+    const current = roles[roleIdx];
+    if (!deleting) {
+      typedEl.textContent = current.slice(0, ++charIdx);
+      if (charIdx === current.length) { deleting = true; setTimeout(typeLoop, 1800); return; }
+    } else {
+      typedEl.textContent = current.slice(0, --charIdx);
+      if (charIdx === 0) { deleting = false; roleIdx = (roleIdx + 1) % roles.length; }
+    }
+    setTimeout(typeLoop, deleting ? 55 : 85);
+  }
+  typeLoop();
+
+  // Theme toggle
+  const html = document.documentElement;
+  const themeIcon = document.getElementById('theme-icon');
+  let dark = true;
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    dark = !dark;
+    html.setAttribute('data-theme', dark ? 'dark' : 'light');
+    themeIcon.className = dark ? 'ri-moon-line' : 'ri-sun-line';
+  });
+
+  // Mobile nav
+  const navMenu = document.getElementById('nav-menu');
+  document.getElementById('nav-toggle').addEventListener('click', () => navMenu.classList.add('open'));
+  document.getElementById('nav-close').addEventListener('click', () => navMenu.classList.remove('open'));
+  navMenu.querySelectorAll('.nav__link').forEach(l => l.addEventListener('click', () => navMenu.classList.remove('open')));
+
+  // Scroll effects
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+    document.getElementById('scroll-top').classList.toggle('visible', window.scrollY > 300);
+    updateActiveNav();
+    revealOnScroll();
+    animateTimeline();
+  });
+  document.getElementById('scroll-top').addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+  function updateActiveNav() {
+    const sections = ['home','about','experience','projects','education','contact'];
+    let current = 'home';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 100) current = id;
+    });
+    document.querySelectorAll('.nav__link').forEach(l => l.classList.toggle('active', l.dataset.section === current));
+  }
+  function revealOnScroll() {
+    document.querySelectorAll('.reveal').forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight - 60) el.classList.add('visible');
+    });
+  }
+  function animateTimeline() {
+    document.querySelectorAll('.timeline__item').forEach(item => {
+      if (item.getBoundingClientRect().top < window.innerHeight - 80) item.classList.add('visible');
+    });
+  }
+  revealOnScroll();
+  animateTimeline();
+
+  // PROJECT DATA (from second code, with hardware category added)
+  const CATEGORIES = [
+    { id: 'all',  name: 'All Projects' },
+    { id: 'ml',   name: 'Machine Learning' },
+    { id: 'nlp',  name: 'NLP / LLMs' },
+    { id: 'cv',   name: 'Computer Vision' },
+    { id: 'web',  name: 'Web Development' },
+    { id: 'data', name: 'Data Engineering' },
+    { id: 'design', name: 'Design' },
+    { id: 'hardware', name: 'Hardware' }
+  ];
+
+  const PROJECTS = [
+    {
+      id: 1,
+      category: 'web',
+      title: 'Compiler Visualizer',
+      subtitle: 'Compiler / Parsing Algorithms',
+      emoji: '⚙️',
+      thumbnail: 'compiler_visualised.png',
+      shortDesc: '6 parsing algorithms (LL(1), LR(0), SLR, LALR, CLR, Operator Precedence) with FIRST/FOLLOW, LR items, TAC generation, and x86 assembly output.',
+      fullDesc: `An interactive, educational tool that brings compiler frontend theory to life. This visualizer demystifies syntax analysis by letting you step through six powerful parsing algorithms in real time — LL(1), LR(0), SLR(1), LALR(1), CLR(1), and Operator Precedence.
+
+For any custom grammar you define, the tool automatically computes FIRST and FOLLOW sets, constructs the canonical LR(0) items and DFA, and builds the corresponding parse table. Watch as input strings are processed step by step, with the stack, input buffer, and applied rules highlighted at every move. Beyond parsing, the visualizer goes further into code generation: it produces human-readable Three-Address Code (TAC) from the parsed structure and then translates that down to executable x86 assembly. Whether you're a student struggling with compiler concepts or an enthusiast exploring language design, this playground makes abstract theory tangible, visual, and deeply understandable.`,
+      tech: ['JavaScript', 'HTML/CSS', 'LL(1)', 'LR(0)', 'SLR(1)', 'LALR(1)', 'CLR(1)', 'Operator Precedence', 'TAC', 'x86 Assembly'],
+      images: ['compiler_visualised.png', 'compiler_visualised_3.png', 'compiler_visualised_4.png', 'compiler_visualised_2.png'],
+      videoUrl: '',
+      liveUrl: 'https://compiler-visualised-rrs.vercel.app/#parser-playground',
+      githubUrl: 'https://github.com/rahulrajsinghwork15072005-a11y/Compiler_Visualised_RRS'
+    },
+    {
+      id: 2,
+      category: 'web',
+      title: 'Ultimate OS Visualizer – Y2K Edition',
+      subtitle: 'Operating System Simulator',
+      emoji: '🖥️',
+      thumbnail: '',
+      shortDesc: 'CPU scheduling (FCFS, SJF, RR, MLFQ, EDF…), deadlock (Banker’s + wait‑for graph), disk scheduling (FCFS, SSTF, SCAN, C‑LOOK…), paging/segmentation/virtual memory, and IPC (producer‑consumer, readers‑writers, dining philosophers, semaphores).',
+      fullDesc: `Step into a nostalgic Y2K-era operating system lab with this fully interactive simulator. Explore the core algorithms that power every modern OS: from process scheduling (FCFS, SJF, Round Robin, Multilevel Feedback Queue, and hard real-time EDF) to deadlock handling with Banker's algorithm and dynamic wait-for graphs. Manage disk head movements with classic algorithms like SSTF, SCAN, C-SCAN, LOOK, and C-LOOK. Dive deep into memory management as you visualize paging, segmentation, and virtual memory with page replacement strategies. Tackle classic synchronization problems — producer-consumer, readers-writers, dining philosophers — using semaphores and watch them resolve in real time. Every algorithm is brought to life with animated charts, step-by-step execution, and live performance metrics, making the invisible workings of an OS crystal clear. Whether you're prepping for exams or just love the aesthetic of early 2000s UIs, this Y2K-themed playground makes OS theory tangible and fun.`,
+      tech: ['HTML5', 'CSS3', 'JavaScript (ES6)', 'Chart.js', 'Canvas API', 'CPU Scheduling', 'Deadlock', 'Disk Scheduling', 'Paging', 'Segmentation', 'Virtual Memory', 'IPC', 'Semaphores'],
+      images: [],
+      videoUrl: '',
+      liveUrl: '',
+      githubUrl: ''
+    },
+    {
+      id: 3,
+      category: 'web',
+      title: 'WikiBoard',
+      subtitle: 'Visual Research Canvas',
+      emoji: '📋',
+      thumbnail: '',
+      shortDesc: 'Drag Wikipedia articles onto an infinite canvas, draw connections, add sticky notes, group concepts, and explore topics like a mind map powered by live API data.',
+      fullDesc: `WikiBoard transforms the way you explore knowledge. It’s a spatial thinking tool that lets you drop Wikipedia articles onto an infinite, zoomable canvas and arrange them visually. Every article becomes a draggable, resizable card that auto‑fetches a summary and thumbnail. Connect related concepts by dragging ports to draw labelled, styled arrows — straight, curved, or stepped — and build a web of understanding in minutes. Stay playful with floating sticky notes, free‑form text labels, and the ability to pop out images directly from articles. The minimap keeps you oriented, and groups let you cluster ideas. With full keyboard shortcuts, dark/light theme, and export to JSON, WikiBoard feels like a native app. Whether you're researching a thesis, planning a novel, or just satisfying your curiosity, it’s a beautiful, paper‑like environment where ideas come together naturally.`,
+      tech: ['JavaScript (ES6+)', 'HTML5', 'CSS3', 'Wikipedia API', 'SVG', 'Drag & Drop', 'Infinite Canvas', 'JSON Export'],
+      images: [],
+      videoUrl: '',
+      liveUrl: '',
+      githubUrl: ''
+    },
+    {
+      id: 4,
+      category: 'web',
+      title: 'WebOS XP',
+      subtitle: 'Browser-Based Operating System',
+      emoji: '🪟',
+      thumbnail: '',
+      shortDesc: 'A fully interactive Windows XP-style desktop environment in the browser — boot CLI, login, draggable windows, 15+ apps, 9 games, virtual file system, theming, and Harry Potter easter eggs.',
+      fullDesc: `WebOS XP is a love letter to early 2000s computing, built entirely with vanilla HTML, CSS, and JavaScript. It boots like a real OS: a terminal-style CLI walks you through a simulated startup sequence before dropping you at a login prompt. Once authenticated, you're greeted by a pixel-perfect Windows XP desktop — complete with rolling green hills, drifting clouds, a LiveJournal-era taskbar, and a Start menu that oozes nostalgia.
+
+The desktop is alive with draggable, customisable icons. Double-click to launch fully functional applications: a Terminal packed with magic spells (try "lumos", "expecto patronum", or "accio paint"), a Notepad with virtual file system persistence, a Paint clone with flood fill, a Media Player with playlist support, an Image Gallery with slideshow mode, a Web Browser with retro styling, Sticky Notes that auto-save, a Video Player, a Scientific Calculator, a Calendar with event storage, and a Game Hub featuring Snake, Tetris, Minesweeper, Memory Match, Tic-Tac-Toe, Flappy Bird, Pong, Wordle, and 2048 — all playable.
+
+Every window is draggable, resizable, minimisable, and maximisable. The virtual file system (Desktop, Documents, Downloads) persists across sessions via localStorage. Right-click anywhere for context menus, toggle between six wallpapers, switch to dark mode, or lock the screen. The Terminal alone holds dozens of easter eggs — from Marvel and Lord of the Rings references to a working Konami code. You can even create custom desktop icons with your own emoji, name, and content.
+
+Built with zero frameworks, this project is a showcase of vanilla JS mastery: drag-and-drop, canvas games, localStorage persistence, recursive flood fill, minimax AI for Tic-Tac-Toe, and a fully event-driven window manager. It's part portfolio, part time capsule, and entirely delightful.`,
+      tech: ['JavaScript (ES6+)', 'HTML5', 'CSS3', 'Canvas API', 'localStorage', 'Drag & Drop API', 'File System Access API', 'Game Development', 'Window Management'],
+      images: [],
+      videoUrl: '',
+      liveUrl: '',
+      githubUrl: ''
+    },
+    {
+      id: 5,
+      category: 'web',
+      title: 'Anfield Echo',
+      subtitle: 'Liverpool FC — Immersive Fan Blog',
+      emoji: '🔴',
+      thumbnail: '',
+      shortDesc: 'A high-end, typography‑driven LFC fan site with cinematic scroll-telling, a horizontal archive gallery, tactical deep dives, and full light/dark theming — built entirely with vanilla HTML, CSS & JS.',
+      fullDesc: `Anfield Echo is a love letter to Liverpool FC, disguised as a premium editorial experience. Every pixel is hand-crafted: from the custom cursor that morphs into a "READ" label over cards, to the noise-textured background that feels like aged newsprint. The site opens with a heroic headline set in Playfair Display — "THE RED CATHEDRAL NEVER SLEEPS" — and doesn't let up.
+
+Scroll down and a marquee of club honours animates into view, each stat counting up to its real value. The tactical analysis section includes a live 4‑3‑3 formation visualisation with pulsing dots. But the centrepiece is the horizontal‑scroll gallery: as you scroll vertically, a track of 8 richly‑styled cards slides horizontally while a progress bar tracks your position — an innovative, physical browsing experience.
+
+Every part of the site respects typography and motion: staggered reveal animations, magnetic buttons, a full‑screen search overlay with trending topics, a reading progress bar, and a seamless light/dark mode toggle that recolours every gradient, border, and text colour. There's a newsletter subscription with micro‑interactions, an animated loader, and a mobile‑first responsive layout that degrades gracefully.
+
+The codebase is pure vanilla — no frameworks, no libraries. It showcases advanced CSS Grid, custom properties for theming, SVG animations, Intersection Observer for scroll‑triggered effects, requestAnimationFrame for smooth animations, and a deep understanding of the cascade. This isn't a portfolio site; it's a digital magazine that happens to be built by one person.`,
+      tech: ['HTML5', 'CSS3', 'JavaScript (ES6+)', 'CSS Grid', 'CSS Variables', 'SVG Animation', 'Intersection Observer', 'requestAnimationFrame', 'Custom Cursor', 'Light/Dark Theming'],
+      images: [],
+      videoUrl: '',
+      liveUrl: '',
+      githubUrl: ''
+    },
+    {
+      id: 6,
+      category: 'web',
+      title: 'Mockly',
+      subtitle: 'Realistic DM Simulator',
+      emoji: '💬',
+      thumbnail: '',
+      shortDesc: 'Generate pixel‑perfect chat screenshots for 8 platforms (WhatsApp, Telegram, iMessage, Discord…) — custom avatars, backgrounds, message timelines, typing indicators, and one‑click PNG export. All built with vanilla JS.',
+      fullDesc: `Mockly is a precision tool for creating authentic‑looking chat conversations without touching a design app. Choose from eight meticulously styled platforms — WhatsApp, Telegram, Instagram, iMessage, Messenger, Signal, Discord, and SMS — each with its own colors, header layouts, bubble shapes, and even typing indicators. Every visual detail matches the real apps: the Dynamic Island for iMessage, the gradient ring for Instagram, Discord’s flat chat style, and WhatsApp’s double‑check ticks.
+
+The customisation runs deep. Upload profile pictures for both sides of the conversation, set the chat wallpaper via colour or image URL, tweak the status bar clock and date separators, and compose messages with full control over sender, timestamp, and date. You can inject a typing indicator at any point, edit message times inline, and delete messages with a hover‑over button. A live status bar clock can be toggled to manual mode for frozen screenshots.
+
+Everything is rendered in a realistic phone frame with a notch, side buttons, and a 307×660 pixel screen. The entire conversation is snapshotted with html2canvas at 3× resolution, giving you a crisp, ready‑to‑share PNG. The sidebar is built with a dark glassmorphism aesthetic, and the whole app shell can switch to an even darker UI mode.
+
+No frameworks, no dependencies — just vanilla HTML, CSS (custom properties, grid, animations), and ES6+ JavaScript. Mockly is a love letter to interface fidelity, built for anyone who needs a quick, beautiful chat mockup without touching Figma.`,
+      tech: ['HTML5', 'CSS3', 'JavaScript (ES6+)', 'CSS Grid', 'Custom Properties', 'html2canvas', 'FileReader API', 'Realistic UI Rendering'],
+      images: [],
+      videoUrl: '',
+      liveUrl: '',
+      githubUrl: ''
+    },
+    {
+      id: 7,
+      category: 'web',
+      title: 'MakeNotes',
+      subtitle: 'Visual Note‑Taking Canvas',
+      emoji: '📝',
+      thumbnail: '',
+      shortDesc: 'A spatial note‑taking web app with draggable cards, color‑coded connections, post‑its, a rich text editor, and multiple export formats — all served as a PWA that works offline.',
+      fullDesc: `MakeNotes reimagines note‑taking as a free‑form canvas where ideas aren't trapped in lists. Drag cards anywhere, colour‑code them by category, and link them with arrowed connections to build mind maps, project boards, or study diagrams. Every card holds a full rich‑text note — bold, italics, headings, bullet lists, code blocks, images, and callouts — edited in a polished modal. Sprinkle post‑it notes for quick reminders, assign tags, and let the minimap keep you oriented as your board grows.
+
+The app is a Progressive Web App: it installs on phones and desktops, works fully offline thanks to a service worker, and auto‑saves your board to localStorage every few seconds. Export options are plentiful — detailed JSON for backup, clean Markdown, a print‑ready HTML document, a full HTML export of all notes with a table of contents, and a rendered PNG snapshot of the canvas. A dark mode, search, undo/redo, and keyboard shortcuts round out the experience.
+
+The codebase is vanilla JavaScript (no frameworks, no build tools) with a home‑grown canvas engine, SVG connections, CSS custom properties for theming, and touch‑optimised interactions (pinch‑zoom, drag, double‑tap). It's a testament to how much a single‑developer PWA can accomplish: a spatial thinking tool that feels native, respects user‑data ownership, and costs nothing to run.`,
+      tech: ['HTML5', 'CSS3', 'JavaScript (ES6+)', 'PWA', 'Service Worker', 'localStorage', 'SVG', 'Canvas API', 'Drag & Drop', 'Touch Events', 'Rich Text Editing'],
+      images: [],
+      videoUrl: '',
+      liveUrl: '',
+      githubUrl: ''
+    },
+    {
+      id: 8,
+      category: 'web',
+      title: 'Dev Village XL',
+      subtitle: 'RPG Portfolio — 10× World Edition',
+      emoji: '🗺️',
+      thumbnail: '',
+      shortDesc: 'A 2D pixel‑art RPG where you explore a 60×60 tile village to discover a developer\'s portfolio — 7 buildings, 9 NPCs, quests, items, weather, day/night, and a full game loop crafted in vanilla JS.',
+      fullDesc: `Dev Village XL is an interactive portfolio disguised as a retro RPG. You control a pixel‑art character wandering a procedurally‑generated 60×60 overworld — cross paths, weave through forests, skirt lakes, and step onto cobblestone plazas. The world is alive: a day/night cycle dims the screen and lights lamps, weather shifts from clear skies to rain, snow, or storms, and minimap keeps you oriented.
+
+Seven themed buildings dot the map — each is a closed section of the portfolio that opens with a polished modal when you press E at its doorstep. The About Me house shows a timeline, stats, and fun facts. The Projects Lab has a filterable gallery of 6 featured projects with tech tags and links. The Skills Dojo reveals animated proficiency bars across frontend, backend, DevOps, and AI skills, plus chip clouds. The Contact Terminal prints a fake shell and offers real‑style contact links plus a message form. The Experience Hall unfolds a career timeline with achievement lists, and the Library displays education, certifications, and current reading. The Dev Tavern hosts blog posts and a newsletter sign‑up.
+
+Nine villagers roam the world with branching dialogues, choices, and quest triggers — a Village Elder grants the Resume Scroll, QA Quinn challenges you to a quiz, and AI Scholar Ada tests your AI knowledge. Five glowing tech orbs and four bonus items are hidden across the map; collect them to complete the Full Stack Delivery quest and level up your Dev Level. An inventory hotbar, quest log, minimap, and pause menu with save/load round out the experience.
+
+Everything runs in a single HTML file with vanilla JavaScript and CSS (no frameworks). It features a custom 8‑bit chiptune engine, pixel‑perfect canvas rendering with parallax particles, touch/mobile navigation, a PWA‑ready manifest, and a boot screen with animated ASCII art. This is a portfolio that doesn't just tell you what someone can do — it lets you walk through it.`,
+      tech: ['HTML5 Canvas', 'CSS3', 'JavaScript (ES6+)', 'Pixel Art Rendering', 'RPG Mechanics', 'Audio Synthesis (Web Audio API)', 'Game Loop', 'Procedural Map Generation', 'PWA'],
+      images: [],
+      videoUrl: '',
+      liveUrl: '',
+      githubUrl: ''
+    },
+    {
+      id: 9,
+      category: 'hardware',
+      title: 'Text-to-Braille Conversion System',
+      subtitle: 'Portable Assistive Device',
+      emoji: '♿',
+      thumbnail: '',
+      shortDesc: 'Raspberry Pi–based device that captures printed text via camera, classifies characters with a 92%‑accurate SVM, and outputs Braille on a refreshable display in real time.',
+      fullDesc: `This project is a fully functional, portable assistive tool designed to bridge the gap between printed text and tactile reading. A Raspberry Pi camera captures an image of any printed page — a book, a sign, a label — and OpenCV preprocesses it in real time: grayscale conversion, adaptive thresholding, and contour detection isolate individual characters. Each character's feature vector (moments, pixel density, etc.) is extracted and fed into a Support Vector Machine (SVM) classifier trained on over 5,000 samples across multiple fonts.
+
+The SVM achieves 92% classification accuracy on unseen fonts, ensuring reliable character recognition. The predicted character is instantly converted to a standard Braille pattern (Unicode Braille symbols) and sent to refreshable Braille cells driven via Raspberry Pi GPIO pins, with a conversion speed under 2 seconds per word. The entire system is battery‑powered, housed in a compact 3D‑printed enclosure, and ready for real‑world use by visually impaired individuals.`,
+      tech: ['Python', 'OpenCV', 'scikit-learn', 'Raspberry Pi', 'SVM', 'GPIO', 'Computer Vision'],
+      images: [],
+      videoUrl: '',
+      liveUrl: '',
+      githubUrl: 'https://github.com/rahulrajsinghwork15072005-a11y/braille-device'
+    },
+    {
+      id: 10,
+      category: 'web',
+      title: 'Yellove Echo',
+      subtitle: 'Chennai Super Kings — Immersive Fan Blog',
+      emoji: '💛',
+      thumbnail: '',
+      shortDesc: 'A premium CSK fan site with cinematic scroll‑telling, a horizontal archive gallery, tactical deep dives, full light/dark theming, and hand‑gesture navigation — all built with vanilla HTML, CSS & JS.',
+      fullDesc: `Yellove Echo is a love letter to Chennai Super Kings, packaged as a sophisticated digital magazine. It borrows the rich editorial architecture of a premium sports publication — Playfair Display headlines, noise‑textured paper, a custom cursor that whispers "READ" over cards — but every detail is painted in the yellows and deep blues of Chepauk. The hero headline roars "THE YELLOW FORTRESS NEVER SLEEPS," and a double‑deck ticker celebrates IPL and CLT20 titles in continuous motion.
+
+Scroll through and a marquee of CSK stats animates into view: 5 IPL titles, 2 CLT20 wins, 10 playoff appearances, and the roar of 38,000 at Chepauk. The tactical analysis section includes a live fielding‑setup visualisation for the powerplay. The horizontal‑scroll gallery slides through 8 richly‑styled match dispatches, tactical pieces, and culture stories — each card glowing with golden gradients and edge accents.
+
+⚠️ **Hand‑gesture control** is built right in: toggle the ✋ button or press G to activate MediaPipe‑powered hand tracking. Show an open palm to scroll down, a fist to scroll up, peace sign to click, thumbs up to scroll to top, and more — the gesture guide panel reveals all 10 gesture triggers. It's a playful, futuristic way to browse the site without touching your keyboard or trackpad.
+
+Every interaction is polished: staggered reveal animations, magnetic buttons, a command palette (Cmd+K), a full‑screen search overlay with trending IPL topics, and a seamless light/dark mode that recolours every gradient, border, and text. Under the hood, it showcases modern CSS features: @layer, @starting‑style, color‑mix(), nesting, :has(), container queries, scroll‑driven animations, and anchor positioning. The JavaScript layer integrates the Popover API, View Transitions API, Navigation API, and the MediaPipe Hands pipeline, all in vanilla code.
+
+While the visual grammar shares DNA with Anfield Echo, Yellove Echo is unmistakably a CSK sanctuary — from the statistics to the whistles, it's a standalone, opinionated fan experience built entirely with vanilla code.`,
+      tech: ['HTML5', 'CSS3', 'JavaScript (ES6+)', 'CSS Nesting', 'CSS @layer', 'Popover API', 'View Transitions API', 'Navigation API', 'MediaPipe Hands', 'Gesture Control'],
+      images: [],
+      videoUrl: '',
+      liveUrl: '',
+      githubUrl: ''
+    }
+  ];
+
+  // Render filters
+  const filtersEl = document.getElementById('project-filters');
+  CATEGORIES.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn' + (cat.id === 'all' ? ' active' : '');
+    btn.textContent = cat.name;
+    btn.dataset.cat = cat.id;
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filterProjects(cat.id);
+    });
+    filtersEl.appendChild(btn);
+  });
+
+  // Render projects
+  const gridEl = document.getElementById('projects-grid');
+  function renderProjects() {
+    gridEl.innerHTML = '';
+    PROJECTS.forEach((p, i) => {
+      const card = document.createElement('div');
+      card.className = 'project-card';
+      card.dataset.cat = p.category;
+      card.style.animationDelay = (i * 0.08) + 's';
+      card.innerHTML = `
+        <div class="project-card__thumb">
+          ${p.thumbnail ? `<img src="${p.thumbnail}" alt="${p.title}" />` : `<span style="font-size:2.5rem">${p.emoji}</span>`}
+        </div>
+        <div class="project-card__body">
+          <div class="project-card__meta"><span class="tag">${p.subtitle}</span></div>
+          <h3 class="project-card__title">${p.title}</h3>
+          <p class="project-card__desc">${p.shortDesc}</p>
+          <div class="project-card__footer">
+            <div class="project-card__tags">${p.tech.slice(0,3).map(t => `<span class="skill-tag">${t}</span>`).join('')}</div>
+            <div class="project-card__arrow"><i class="ri-arrow-right-up-line"></i></div>
+          </div>
+        </div>`;
+      card.addEventListener('click', () => openModal(p));
+      gridEl.appendChild(card);
+    });
+  }
+  renderProjects();
+
+  function filterProjects(cat) {
+    document.querySelectorAll('.project-card').forEach(c => {
+      c.classList.toggle('hidden', cat !== 'all' && c.dataset.cat !== cat);
+    });
+  }
+
+  // Modal
+  const overlay = document.getElementById('modal-overlay');
+  const modalMedia = document.getElementById('modal-media');
+  const modalTitle = document.getElementById('modal-title');
+  const modalDesc = document.getElementById('modal-desc');
+  const modalTags = document.getElementById('modal-tags');
+  const modalLinks = document.getElementById('modal-links');
+
+  function openModal(p) {
+    if (p.videoUrl) {
+      modalMedia.innerHTML = `<iframe src="${p.videoUrl}" allowfullscreen></iframe>`;
+    } else if (p.thumbnail) {
+      modalMedia.innerHTML = `<img src="${p.thumbnail}" alt="${p.title}" />`;
+    } else {
+      modalMedia.innerHTML = `<span style="font-size:4rem">${p.emoji}</span>`;
+    }
+    if (p.images && p.images.length > 1) {
+      let currentImg = 0;
+      const mediaEl = document.createElement('div');
+      mediaEl.innerHTML = `<img src="${p.images[0]}" style="width:100%;height:100%;object-fit:cover" />`;
+      modalMedia.innerHTML = '';
+      modalMedia.appendChild(mediaEl.firstChild);
+      const nav = document.createElement('div');
+      nav.className = 'modal__media-nav';
+      p.images.forEach((_, idx) => {
+        const dot = document.createElement('div');
+        dot.className = 'modal__media-dot' + (idx===0?' active':'');
+        dot.addEventListener('click', () => {
+          modalMedia.querySelector('img').src = p.images[idx];
+          nav.querySelectorAll('.modal__media-dot').forEach((d,i) => d.classList.toggle('active', i===idx));
+        });
+        nav.appendChild(dot);
+      });
+      modalMedia.appendChild(nav);
+    }
+    modalTitle.textContent = p.title;
+    modalTags.innerHTML = p.tech.map(t => `<span class="tag">${t}</span>`).join('');
+    modalDesc.innerHTML = p.fullDesc.replace(/\n/g, '<br>');
+    modalLinks.innerHTML = '';
+    if (p.liveUrl) {
+      const a = document.createElement('a');
+      a.href = p.liveUrl; a.target = '_blank';
+      a.className = 'button';
+      a.innerHTML = 'Live Demo <i class="ri-external-link-line"></i>';
+      modalLinks.appendChild(a);
+    }
+    if (p.githubUrl) {
+      const a = document.createElement('a');
+      a.href = p.githubUrl; a.target = '_blank';
+      a.className = 'button button--outline';
+      a.innerHTML = '<i class="ri-github-line"></i> GitHub';
+      modalLinks.appendChild(a);
+    }
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
